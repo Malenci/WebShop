@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>Title</title>
+</head>
+<body>
+<div th:insert="sections/header::header"></div>
+<div class="container mt-4">
+    <h3>Add Order</h3>
+    <form th:action="@{/cart/addOrder}" method="post">
+        <div class="form-group">
+            <label for="address">Address</label>
+            <input type="text" id="address" name="address" class="form-control" placeholder="Enter address" required>
+        </div>
+        <div class="form-group">
+            <label for="city">City</label>
+            <input type="text" id="city" name="city" class="form-control" placeholder="Enter city" required>
+        </div>
+        <div class="form-group">
+            <label for="zipCode">Zip Code</label>
+            <input type="text" id="zipCode" name="zipCode" class="form-control" placeholder="Enter zip code" required>
+        </div>
+        <div class="form-group">
+            <label for="country">Country</label>
+            <input type="text" id="country" name="country" class="form-control" placeholder="Enter country" required>
+        </div>
+        <div class="form-group">
+            <label for="phoneNumber">Phone Number</label>
+            <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" placeholder="Enter phone number" required>
+        </div>
+        <div class="form-group">
+            <label for="productIds">Products in Cart</label>
+
+            <select id="productIds" name="productIds" class="form-control" multiple>
+                <option th:each="product : ${productsInCart}" th:value="${product.id}" th:text="${product.name}"></option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Place Order</button>
+    </form>
+</div>
+<div th:insert="sections/footer::footer"></div>
+</body>
+</html>
